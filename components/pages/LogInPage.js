@@ -132,9 +132,9 @@ function LogInPage({ navigation }) {
         <InnerContainer>
           <PageLogo
             resizeMode="cover"
-            source={require("../../assets/brckflwLogos/logo_heart_yellow.png")}
+            source={require("../../assets/Ottomize_Logo.png")}
           />
-          <PageTitle>BRCKFLW</PageTitle>
+          <PageTitle>OTTOMIZE</PageTitle>
           <SubTitle>Account Login</SubTitle>
           <Formik
             initialValues={{ email: "", password: "" }}

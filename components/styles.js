@@ -11,7 +11,7 @@ export const Colors = {
   secondary: "#E5E7EB",
   tertiary: "#1F2937",
   darkLight: "#9CA3AF",
-  brand: "#FFD41B",
+  brand: "#D0021B",
   green: "#10B981",
   red: "#EF4444",
 };
@@ -38,8 +38,10 @@ export const WelcomeContainer = styled(InnerContainer)`
 `;
 
 export const PageLogo = styled.Image`
-  width: 250px;
-  height: 230px;
+  margin-top: 80px;
+  margin-bottom: 20px;
+  width: 300px;
+  height: 115px;
 `;
 
 export const ProjectSelectionPageLogo = styled.Image`

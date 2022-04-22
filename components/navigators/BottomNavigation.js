@@ -6,7 +6,7 @@ import AccountPage from "../pages/AccountPage";
 import HomePage from "../pages/HomePage";
 import UserContext from "../store/user-context";
 
-import { Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import { View } from "react-native";
@@ -23,10 +23,13 @@ function BottomNavigation({ navigation }) {
       screenOptions={{
         headerLeft: () => (
           <View style={{ alignContent: "center", justifyContent: "center" }}>
-            <Text style={styles.heading}>Ottomize</Text>
+            <Image
+              style={styles.heading}
+              source={require("../../assets/Ottomize_Logo.png")}
+            />
           </View>
         ),
-        tabBarActiveTintColor: "#fbd017",
+        tabBarActiveTintColor: "#D0021B",
       }}
     >
       <Tab.Screen
@@ -38,7 +41,7 @@ function BottomNavigation({ navigation }) {
               <FontAwesome5
                 name="paper-plane"
                 size={24}
-                color="#fbd017"
+                color="#D0021B"
                 style={styles.FontAwesomeChatIcon}
               />
             </TouchableOpacity>
@@ -49,7 +52,7 @@ function BottomNavigation({ navigation }) {
           tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
-              name="home-outline"
+              name="home-analytics"
               color={color}
               size={size}
             />
@@ -57,15 +60,15 @@ function BottomNavigation({ navigation }) {
         }}
       />
       <Tab.Screen
-        name="Defects"
+        name="Predictions"
         component={PredictionDetailsPage}
         options={{
-          headerTitle: "Defects",
+          headerTitle: "Predictions",
           headerTitleAlign: "center",
-          tabBarLabel: "Defects",
+          tabBarLabel: "Predictions",
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
-              name="hammer-wrench"
+              name="google-analytics"
               color={color}
               size={size}
             />
@@ -97,12 +100,9 @@ export default BottomNavigation;
 
 const styles = StyleSheet.create({
   heading: {
-    color: "#000",
-    justifyContent: "center",
-    fontSize: 35,
-    fontWeight: "900",
     marginLeft: 15,
-    color: "#FFD41B",
+    width: 80,
+    height: 30,
   },
   FontAwesomeChatIcon: {
     marginRight: 15,

@@ -24,6 +24,12 @@ function PredictionDetailsPage({ navigation }) {
     </View>
   );
 
-  return <View style={[tw``, { flex: 1 }]}></View>;
+  return (
+    <View style={[tw``, { flex: 1 }]}>
+      <Text>
+        Hier ist dann die Seite, auf der man weitere Details anzeigen könnte
+      </Text>
+    </View>
+  );
 }
 export default PredictionDetailsPage;
