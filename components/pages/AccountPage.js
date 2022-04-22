@@ -23,10 +23,11 @@ import { onChange } from "react-native-reanimated";
 import { Formik } from "formik";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import AuthContext from "../store/auth-context";
+import ValidateEditModal from "../forms/ValidateEditModal";
 
 import * as yup from "yup";
 
-DropDownPicker.setListMode("SCROLLVIEW");
+/* DropDownPicker.setListMode("SCROLLVIEW"); */
 
 const AccountSchema = yup.object({
   prjKey: yup.string(),
@@ -78,14 +79,14 @@ function AccountPage({ navigation }) {
   const onClose = () => {
     modalRef.current?.close();
   };
-  const pickerValues = userCtx.access_registers.map((accessregister) => {
+  /* const pickerValues = userCtx.access_registers.map((accessregister) => {
     return {
       label: accessregister.project.name,
       value: accessregister.project.id,
     };
-  });
+  }); */
   function handleLogOut() {
-    userCtx.setCurrentProject(null);
+    /* userCtx.setCurrentProject(null); */
     authCtx.signOut();
   }
   function handleCancleModal() {
@@ -135,7 +136,7 @@ function AccountPage({ navigation }) {
           >
             {userCtx.fullName}
           </Text>
-          <DropDownPicker
+          {/* <DropDownPicker
             onChangeValue={(item) => {
               console.log(item);
               userCtx.setCurrentProject(item);
@@ -143,7 +144,6 @@ function AccountPage({ navigation }) {
             open={open}
             value={value}
             items={pickerValues}
-            /* defaultValue={userCtx.currentProject} */
             setOpen={setOpen}
             setValue={setValue}
             placeholder="Select Project"
@@ -154,7 +154,7 @@ function AccountPage({ navigation }) {
               fontSize: 17,
             }}
             style={styles.DropDownPicker}
-          />
+          /> */}
           <StyledFormArea style={{ alignItems: "center", width: "100%" }}>
             <Formik
               style={{ width: "100%" }}
@@ -309,12 +309,6 @@ function AccountPage({ navigation }) {
                 </View>
               )}
             </Formik>
-            <BottomSheet
-              getPicture={handleGetPicture}
-              modalRef={modalRef}
-              onClose={onClose}
-              navigation={navigation}
-            />
           </StyledFormArea>
           <StyledFormAreaLogOut>
             <StyledButtonLogOut onPress={handleLogOut}>
@@ -330,7 +324,7 @@ function AccountPage({ navigation }) {
 export default AccountPage;
 
 const styles = StyleSheet.create({
-  DropDownPicker: {
+  /* DropDownPicker: {
     height: 30,
     backgroundColor: "#fff",
     justifyContent: "center",
@@ -339,7 +333,6 @@ const styles = StyleSheet.create({
     width: "40%",
     marginBottom: 15,
     marginTop: 5,
-    /* position: "relative", */
-  },
+  }, */
   errors: { color: "red", marginBottom: 5, fontWeight: "bold" },
 });

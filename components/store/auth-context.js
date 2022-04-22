@@ -128,7 +128,7 @@ export function AuthContextProvider(props) {
       signOut: () => {
         SecureStore.deleteItemAsync("userToken");
         SecureStore.deleteItemAsync("chatToken");
-        kitty.endSession();
+        /* kitty.endSession(); */
         dispatch({ type: "SIGN_OUT" });
       },
       signUp: async (udata) => {

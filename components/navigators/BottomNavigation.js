@@ -33,7 +33,7 @@ function BottomNavigation({ navigation }) {
         name="Home"
         component={HomePage}
         options={{
-          headerRight: () => (
+          /* headerRight: () => (
             <TouchableOpacity onPress={() => navigation.navigate("ChatHome")}>
               <FontAwesome5
                 name="paper-plane"
@@ -42,7 +42,7 @@ function BottomNavigation({ navigation }) {
                 style={styles.FontAwesomeChatIcon}
               />
             </TouchableOpacity>
-          ),
+          ), */
           name: "Home",
           headerTitle: "Home",
           headerTitleAlign: "center",
