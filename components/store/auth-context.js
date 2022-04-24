@@ -18,7 +18,6 @@ export function AuthContextProvider(props) {
           return {
             ...prevState,
             userToken: action.token,
-            chatToken: action.chattoken,
             isLoading: false,
           };
         case "SIGN_IN":
@@ -26,14 +25,12 @@ export function AuthContextProvider(props) {
             ...prevState,
             isSignout: false,
             userToken: action.token,
-            chatToken: action.chattoken,
           };
         case "SIGN_OUT":
           return {
             ...prevState,
             isSignout: true,
             userToken: null,
-            chatToken: null,
           };
       }
     },
@@ -41,7 +38,6 @@ export function AuthContextProvider(props) {
       isLoading: true,
       isSignout: false,
       userToken: null,
-      chatToken: null,
     }
   );
 
@@ -49,13 +45,10 @@ export function AuthContextProvider(props) {
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
       let userToken;
-      let chatToken;
       try {
         // Restore token stored in `SecureStore` or any other encrypted storage
         userToken = await SecureStore.getItemAsync("userToken");
-        chatToken = await SecureStore.getItemAsync("chatToken");
         console.log("loaded successfully userT: " + userToken);
-        console.log("loaded successfully chatT: " + chatToken);
       } catch (e) {
         // Restoring token failed
         console.log("Restoring token failed");
@@ -67,7 +60,6 @@ export function AuthContextProvider(props) {
       dispatch({
         type: "RESTORE_TOKEN",
         token: userToken,
-        chattoken: chatToken,
       });
     };
     bootstrapAsync();
@@ -97,7 +89,6 @@ export function AuthContextProvider(props) {
         // After getting token, we need to persist the token using `SecureStore` or any other encrypted storage
         // In the example, we'll use a dummy token
         let userToken;
-        let chatToken;
         var userMail = udata.email;
         var userPW = udata.pw;
         const requestOptions = {
@@ -108,7 +99,7 @@ export function AuthContextProvider(props) {
           ),
         };
         const response = await fetch(
-          "http://vserver.heinrichs.tech:8000/api/token",
+          "http://direct.ottomize.simonlabs.de:8000/token",
           requestOptions
         );
         const data = await response.json();
@@ -118,16 +109,15 @@ export function AuthContextProvider(props) {
         } else {
           //safe to securestore
           userToken = data.access_token;
-          chatToken = data.chat_token;
+          console.log(userToken);
+
           await SecureStore.setItemAsync("userToken", userToken);
-          await SecureStore.setItemAsync("chatToken", chatToken);
         }
 
-        dispatch({ type: "SIGN_IN", token: userToken, chattoken: chatToken });
+        dispatch({ type: "SIGN_IN", token: userToken });
       },
       signOut: () => {
         SecureStore.deleteItemAsync("userToken");
-        SecureStore.deleteItemAsync("chatToken");
         /* kitty.endSession(); */
         dispatch({ type: "SIGN_OUT" });
       },
@@ -137,7 +127,6 @@ export function AuthContextProvider(props) {
         // After getting token, we need to persist the token using `SecureStore` or any other encrypted storage
         // In the example, we'll use a dummy token
         let userToken;
-        let chatToken;
         var userMail = udata.email;
         var userPW = udata.pw;
         const requestOptions = {
@@ -148,7 +137,7 @@ export function AuthContextProvider(props) {
           ),
         };
         const response = await fetch(
-          "http://vserver.heinrichs.tech:8000/api/signup",
+          "http://direct.ottomize.simonlabs.de:8000/user/register",
           requestOptions
         );
         const data = await response.json();
@@ -159,10 +148,9 @@ export function AuthContextProvider(props) {
           userToken = data.access_token;
           // safe to securestore
           await SecureStore.setItemAsync("userToken", userToken);
-          await SecureStore.setItemAsync("chatToken", chatToken);
         }
 
-        dispatch({ type: "SIGN_IN", token: userToken, chattoken: chatToken });
+        dispatch({ type: "SIGN_IN", token: userToken });
       },
     }),
     [state]

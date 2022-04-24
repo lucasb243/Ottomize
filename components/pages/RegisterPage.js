@@ -50,7 +50,6 @@ const RegisterSchema = yup.object({
     .string()
     .required("Email Address is required")
     .email("You must enter a valid e-mail"),
-  prjKey: yup.string().required("Project Key is required"),
   password: yup.string().required("Password is required"),
   confirmPassword: yup.string().required("Password Confirmation is required"),
 });
@@ -112,7 +111,7 @@ const RegisterPage = ({ navigation }) => {
     <KeyboardAvoidingWrapper>
       <StyledContainer>
         <StatusBar style="dark" />
-        <InnerContainer>
+        <InnerContainer style={styles.register}>
           <PageTitle>BRCKFLW</PageTitle>
           <SubTitle>Account Signup</SubTitle>
 
@@ -181,18 +180,6 @@ const RegisterPage = ({ navigation }) => {
                 />
                 {errors.email && touched.email && (
                   <Text style={styles.errors}>{errors.email}</Text>
-                )}
-                <MyTextInput
-                  label="Project Key"
-                  icon="key"
-                  placeholder="1234568"
-                  placeholderTextColor={darkLight}
-                  value={values.prjKey}
-                  onChangeText={handleChange("prjKey")}
-                  onBlur={handleBlur("prjKey")}
-                />
-                {errors.prjKey && touched.prjKey && (
-                  <Text style={styles.errors}>{errors.prjKey}</Text>
                 )}
                 <MyTextInput
                   label="Password"
@@ -282,6 +269,7 @@ const MyTextInput = ({
 
 const styles = StyleSheet.create({
   errors: { color: "red", marginBottom: 5, fontWeight: "bold" },
+  register: { marginTop: 100 },
 });
 
 export default RegisterPage;

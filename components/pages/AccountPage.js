@@ -156,7 +156,7 @@ function AccountPage({ navigation }) {
             style={styles.DropDownPicker}
           /> */}
           <StyledFormArea style={{ alignItems: "center", width: "100%" }}>
-            <Formik
+            {/* <Formik
               style={{ width: "100%" }}
               initialValues={{ prjKey: "" }}
               validationSchema={AccountSchema}
@@ -198,7 +198,7 @@ function AccountPage({ navigation }) {
                   />
                 </View>
               )}
-            </Formik>
+            </Formik> */}
             <Formik
               style={{ width: "100%" }}
               initialValues={{ email: "" }}

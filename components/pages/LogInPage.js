@@ -35,10 +35,8 @@ import { View } from "react-native";
 import * as yup from "yup";
 
 const LogInSchema = yup.object({
-  email: yup
-    .string()
-    .required("Email Address is required")
-    .email("You must enter a valid e-mail"),
+  email: yup.string().required("Username is required"),
+  /* .email("You must enter a valid e-mail"), */
   password: yup
     .string()
     .required("Password is required")
