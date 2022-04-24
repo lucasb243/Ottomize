@@ -66,7 +66,7 @@ export function AuthContextProvider(props) {
   }, []);
 
   const instance = axios.create({
-    baseURL: "http://vserver.heinrichs.tech:8000/api/v1/",
+    baseURL: "http://direct.ottomize.simonlabs.de:8000/",
     timeout: 1000,
     headers: { Authorization: `Bearer ${state.userToken}` },
   });
@@ -89,13 +89,13 @@ export function AuthContextProvider(props) {
         // After getting token, we need to persist the token using `SecureStore` or any other encrypted storage
         // In the example, we'll use a dummy token
         let userToken;
-        var userMail = udata.email;
+        var userName = udata.username;
         var userPW = udata.pw;
         const requestOptions = {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: JSON.stringify(
-            `grant_type=&username=${userMail}&password=${userPW}&scope=&client_id=&client_secret=`
+            `grant_type=&username=${userName}&password=${userPW}&scope=&client_id=&client_secret=`
           ),
         };
         const response = await fetch(
@@ -127,15 +127,21 @@ export function AuthContextProvider(props) {
         // After getting token, we need to persist the token using `SecureStore` or any other encrypted storage
         // In the example, we'll use a dummy token
         let userToken;
+        var userName = udata.uname;
         var userMail = udata.email;
         var userPW = udata.pw;
+        const formData = new FormData();
+        formData.append({
+          username: userName,
+          mail: userMail,
+          password: userPW,
+        });
         const requestOptions = {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: JSON.stringify(
-            `grant_type=&username=${userMail}&password=${userPW}&scope=&client_id=&client_secret=`
-          ),
+          body: formData,
         };
+        console.log(requestOptions);
         const response = await fetch(
           "http://direct.ottomize.simonlabs.de:8000/user/register",
           requestOptions
