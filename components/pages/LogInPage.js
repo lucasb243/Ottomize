@@ -35,7 +35,7 @@ import { View } from "react-native";
 import * as yup from "yup";
 
 const LogInSchema = yup.object({
-  email: yup.string().required("Username is required"),
+  username: yup.string().required("Username is required"),
   /* .email("You must enter a valid e-mail"), */
   password: yup
     .string()
@@ -80,30 +80,6 @@ const MyTextInput = ({
     </View>
   );
 };
-const DUMMY_USER = {
-  name: "Anonymous",
-  icon: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Alberto_conversi_profile_pic.jpg",
-  email: "lucas.brach@sap.com",
-  userId: 1,
-  projects: [],
-  isBuilder: false,
-  addresses: [
-    {
-      id: 1,
-      street: "Seckenheimer Landstaße 4a",
-      city: "Mannheim",
-      postcode: 68163,
-      type: "Home",
-    },
-    {
-      id: 2,
-      street: "Hauptstraße 14",
-      city: "Minfeld",
-      postcode: 76872,
-      type: "Home",
-    },
-  ],
-};
 
 function LogInPage({ navigation }) {
   const [hidePassword, setHidePassword] = useState(true);
@@ -135,11 +111,11 @@ function LogInPage({ navigation }) {
           <PageTitle>OTTOMIZE</PageTitle>
           <SubTitle>Account Login</SubTitle>
           <Formik
-            initialValues={{ email: "", password: "" }}
+            initialValues={{ username: "", password: "" }}
             validationSchema={LogInSchema}
             onSubmit={(values) => {
               //TODO Function getUserData from Server
-              const user = { email: values.email, pw: values.password };
+              const user = { username: values.username, pw: values.password };
               handleLogIn(user);
             }}
           >
@@ -153,17 +129,16 @@ function LogInPage({ navigation }) {
             }) => (
               <StyledFormArea>
                 <MyTextInput
-                  label="Email Address"
-                  icon="mail"
-                  placeholder="john@doe.com"
+                  label="Username"
+                  icon="lock"
+                  placeholder="john_doe_123"
                   placeholderTextColor={darkLight}
-                  onChangeText={handleChange("email")}
-                  onBlur={handleBlur("email")}
-                  value={values.email}
-                  keyboardType="email-address"
+                  onChangeText={handleChange("username")}
+                  onBlur={handleBlur("username")}
+                  value={values.username}
                 />
-                {errors.email && touched.email && (
-                  <Text style={styles.errors}>{errors.email}</Text>
+                {errors.username && touched.username && (
+                  <Text style={styles.errors}>{errors.username}</Text>
                 )}
                 <MyTextInput
                   label="Password"

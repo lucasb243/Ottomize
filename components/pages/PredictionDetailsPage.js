@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { View, Text, ScrollView } from "react-native";
 import tw from "twrnc";
-import PostsContext from "../store/posts-store";
 
 function PredictionDetailsPage({ navigation }) {
   //TODO SORT nach importance, duedate, category
@@ -9,8 +8,6 @@ function PredictionDetailsPage({ navigation }) {
 
   const [searchPhrase, setSearchPhrase] = useState("");
   const [searchClicked, setSearchClicked] = useState(false);
-
-  const postsCtx = useContext(PostsContext);
 
   //on click defect item open detail page and pass defect data
 

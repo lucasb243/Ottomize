@@ -127,7 +127,7 @@ export function AuthContextProvider(props) {
         // After getting token, we need to persist the token using `SecureStore` or any other encrypted storage
         // In the example, we'll use a dummy token
         let userToken;
-        var userName = udata.uname;
+        var userName = udata.username;
         var userMail = udata.email;
         var userPW = udata.pw;
         const formData = new FormData();
@@ -139,7 +139,7 @@ export function AuthContextProvider(props) {
         const requestOptions = {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: formData,
+          body: JSON.stringify(formData),
         };
         console.log(requestOptions);
         const response = await fetch(
@@ -149,6 +149,7 @@ export function AuthContextProvider(props) {
         const data = await response.json();
 
         if (!response.ok) {
+          console.log("signup failed");
           console.log(data.detail);
         } else {
           userToken = data.access_token;

@@ -45,7 +45,7 @@ import AuthContext from "../store/auth-context";
 import * as yup from "yup";
 
 const RegisterSchema = yup.object({
-  fullName: yup.string().required("Full Name is required"),
+  username: yup.string().required("Username is required"),
   email: yup
     .string()
     .required("Email Address is required")
@@ -53,31 +53,6 @@ const RegisterSchema = yup.object({
   password: yup.string().required("Password is required"),
   confirmPassword: yup.string().required("Password Confirmation is required"),
 });
-
-const DUMMY_USER = {
-  name: "Anonymous",
-  icon: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Alberto_conversi_profile_pic.jpg",
-  email: "lucas.brach@sap.com",
-  userId: 1,
-  projects: [],
-  isBuilder: false,
-  addresses: [
-    {
-      id: 1,
-      street: "Seckenheimer Landstaße 4a",
-      city: "Mannheim",
-      postcode: 68163,
-      type: "Home",
-    },
-    {
-      id: 2,
-      street: "Hauptstraße 14",
-      city: "Minfeld",
-      postcode: 76872,
-      type: "Home",
-    },
-  ],
-};
 
 const RegisterPage = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
@@ -100,10 +75,6 @@ const RegisterPage = ({ navigation }) => {
     setShow(true);
   };
   function handleRegister(user) {
-    //TTDO SEND FORM DATA TO SERVER
-    //CHECK IF REGEST SUCCESSFULL
-    //IF YES: SERVER RETRUN USER
-    //getUserDataFromServer
     authCtx.signUp(user);
   }
 
@@ -128,9 +99,8 @@ const RegisterPage = ({ navigation }) => {
 
           <Formik
             initialValues={{
-              fullName: "",
+              username: "",
               email: "",
-              prjKey: "",
               password: "",
               confirmPassword: "",
             }}
@@ -139,9 +109,9 @@ const RegisterPage = ({ navigation }) => {
               const user = {
                 email: values.email,
                 pw: values.password,
-                uname: values.fullName,
-                prjKey: values.prjKey,
+                username: values.username,
               };
+              console.log("pass check");
               if (values.password === values.confirmPassword) {
                 handleRegister(user);
               }
@@ -157,13 +127,13 @@ const RegisterPage = ({ navigation }) => {
             }) => (
               <StyledFormArea>
                 <MyTextInput
-                  label="Full Name"
+                  label="Username"
                   icon="person"
-                  placeholder="John Doe"
+                  placeholder="John_Doe_123"
                   placeholderTextColor={darkLight}
-                  onChangeText={handleChange("fullName")}
-                  onBlur={handleBlur("fullName")}
-                  value={values.fullName}
+                  onChangeText={handleChange("username")}
+                  onBlur={handleBlur("username")}
+                  value={values.username}
                 />
                 {errors.fullName && touched.fullName && (
                   <Text style={styles.errors}>{errors.fullName}</Text>

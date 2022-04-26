@@ -7,14 +7,12 @@ import {
   Text,
   Dimensions,
 } from "react-native";
-import PostsContext from "../store/posts-store";
 import UserContext from "../store/user-context";
 import tw from "twrnc";
 import Card from "../ui/Card";
 import BezierLineChart from "../ui/BezierLineChart";
 
 function HomePage({ navigation }) {
-  const postsCtx = useContext(PostsContext);
   const userCtx = useContext(UserContext);
 
   return (

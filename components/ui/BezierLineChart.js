@@ -23,8 +23,7 @@ const useParentSize = () => {
   const onLayout = useCallback((event) => {
     const { width, heigth } = event.nativeEvent.layout;
     setSize({ width, heigth });
-    console.log("setsize");
-    console.log(width);
+    //console.log(width);
   }, []);
   return [size, onLayout];
 };
@@ -38,7 +37,7 @@ const BezierLineChart = () => {
   var todayPlus4 = dateToday.plusDays(4);
   var todayPlus5 = dateToday.plusDays(5);
   var todayPlus6 = dateToday.plusDays(6); */
-  console.log(today);
+  //console.log(today);
   const today1 = today.getDate(+1);
 
   const [size, onLayout] = useParentSize();
@@ -48,7 +47,6 @@ const BezierLineChart = () => {
       style={{ flex: 0 }}
       onLayout={(event) => {
         onLayout(event);
-        console.log(size);
       }}
     >
       <Text style={styles.header}>Bezier Line Chart</Text>
